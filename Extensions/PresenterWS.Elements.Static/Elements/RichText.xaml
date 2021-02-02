@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PresenterWS.Extensions.Standard.Elements"
+                    xmlns:eng="clr-namespace:PresenterWS.Engine;assembly=PwEngine">
+    <!--<ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/PwEngine;component/Themes/Designer/DesignerItem.xaml"/>
+    </ResourceDictionary.MergedDictionaries>-->
+
+    <Style TargetType="local:RichText">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RichText">
+                    <eng:PwElementChrome x:Name="PART_ElementChrome">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}">
+                            <RichTextBox x:Name="PART_RichTextBox" BorderBrush="{x:Null}" BorderThickness="0" Background="{x:Null}" SelectionBrush="{x:Null}" SelectionOpacity="0" IsHitTestVisible="False" Padding="0" Focusable="False" IsReadOnly="True"/>
+                        </Border>
+                    </eng:PwElementChrome>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

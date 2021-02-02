@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PresenterWS.Extensions.Standard.Elements"
+                    xmlns:eng="clr-namespace:PresenterWS.Engine;assembly=PwEngine">
+    <!--<ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/PwEngine;component/Themes/Designer/DesignerItem.xaml"/>
+    </ResourceDictionary.MergedDictionaries>-->
+
+    <Style TargetType="local:Label">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Label">
+                    <eng:PwElementChrome x:Name="PART_ElementChrome">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}">
+                            <TextBlock Text="{TemplateBinding Text}" TextWrapping="{TemplateBinding TextWrapping}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" TextDecorations="{TemplateBinding TextDecoration}" LineHeight="{TemplateBinding LineHeight}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextAlignment="{TemplateBinding TextAlignment}" FontFamily="{TemplateBinding FontFamily}" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" TextTrimming="{TemplateBinding TextTrimming}"/>
+                        </Border>
+                    </eng:PwElementChrome>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

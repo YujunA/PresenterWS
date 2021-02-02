@@ -1,0 +1,37 @@
+﻿<propdesigner:PropertyDesigner
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresenterWS.Extensions.Standard.Elements"
+             xmlns:propdesigner="clr-namespace:PresenterWS.Design.PropDesigner;assembly=PwDesign"
+             xmlns:Controls="clr-namespace:PresenterWS.Design.Controls;assembly=PwDesign" x:Class="PresenterWS.Extensions.Standard.Elements.Picture_pdSource"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Title="图片" DesignerItemsChanged="PropertyDesigner_DesignerItemsChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27"/>
+            <RowDefinition Height="27"/>
+            <RowDefinition Height="27"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="资源" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="10,0,5,0" ToolTip="获取或设置图像的 System.Windows.Media.ImageSource。"/>
+        <TextBlock Text="拉伸" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="10,0,5,0" Grid.Row="1" ToolTip="获取或设置一个值，该值描述应如何拉伸 System.Windows.Controls.Image 以填充目标矩形。"/>
+        <TextBlock Text="方向" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="10,0,5,0" Grid.Row="2"/>
+        <Controls:ResourceSelector x:Name="resourceSelector" Grid.Column="1" Margin="2" ResourceLinkChanged="ResourceSelector_ResourceLinkChanged" ToolTip="获取或设置一个值，指示如何将图像进行缩放。"/>
+        <ComboBox x:Name="cmbStretch" Grid.Row="1" Grid.Column="1" Margin="2" VerticalContentAlignment="Center" SelectionChanged="cmdStretch_SelectionChanged">
+            <ComboBoxItem Content="无"/>
+            <ComboBoxItem Content="填充"/>
+            <ComboBoxItem Content="缩放"/>
+            <ComboBoxItem Content="填充缩放"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbStretchDirection" Grid.Row="2" Grid.Column="1" Margin="2" VerticalContentAlignment="Center" SelectionChanged="cmbStretchDirection_SelectionChanged">
+            <ComboBoxItem Content="上"/>
+            <ComboBoxItem Content="下"/>
+            <ComboBoxItem Content="双向"/>
+        </ComboBox>
+    </Grid>
+</propdesigner:PropertyDesigner>

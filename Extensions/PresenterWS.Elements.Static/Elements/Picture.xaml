@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PresenterWS.Extensions.Standard.Elements"
+                    xmlns:eng="clr-namespace:PresenterWS.Engine;assembly=PwEngine"
+                    xmlns:resmanager="clr-namespace:PresenterWS.Extensions.Standard.ResManager">
+    
+    <resmanager:ImageResourcesConverter x:Key="imgConvertor"/>
+    
+    <Style TargetType="local:Picture">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Picture">
+                    <eng:PwElementChrome x:Name="PART_ElementChrome">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}">
+                            <Image Source="{TemplateBinding Source}" Stretch="{TemplateBinding Stretch}" StretchDirection="{TemplateBinding StretchDirection}"/>
+                        </Border>
+                    </eng:PwElementChrome>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

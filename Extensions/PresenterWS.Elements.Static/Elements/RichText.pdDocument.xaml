@@ -1,0 +1,230 @@
+﻿<propdesigner:PropertyDesigner x:Class="PresenterWS.Extensions.Standard.Elements.RichText_pdDocument"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresenterWS.Extensions.Standard.Elements"
+             xmlns:propdesigner="clr-namespace:PresenterWS.Design.PropDesigner;assembly=PwDesign"
+             mc:Ignorable="d" 
+             d:DesignWidth="245" Title="文档" Loaded="PropertyDesigner_Loaded" UseLayoutRounding="True" DesignerItemsChanged="PropertyDesigner_DesignerItemsChanged">
+    <propdesigner:PropertyDesigner.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PwExtension.Standard;component/Themes/ImageLibrary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ImageRectangleStyle" TargetType="{x:Type Rectangle}">
+                <Setter Property="Width" Value="16"/>
+                <Setter Property="Height" Value="16"/>
+            </Style>
+            <DataTemplate x:Key="FontComboTemplate">
+                <Grid Height="24" d:DesignWidth="192">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Source}" FontFamily="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </propdesigner:PropertyDesigner.Resources>
+    <Grid>
+        <DockPanel x:Name="dplDocEditor" MinHeight="200">
+            <StackPanel x:Name="ToolBarOben" DockPanel.Dock="Top">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="CommandTarget" Value="{Binding ElementName=RichTextControl}"/>
+                    </Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="CommandTarget" Value="{Binding ElementName=RichTextControl}"/>
+                    </Style>
+
+                </StackPanel.Resources>
+                <Grid Margin="0,2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="ToolStripButtonOpen" Click="ToolStripButtonOpen_Click">
+                        <Rectangle Fill="{StaticResource Image_Import}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="1" HorizontalAlignment="Center"/>
+
+                    <Button x:Name="ToolStripButtonCut" Command="ApplicationCommands.Cut" ToolTip="Cut" Grid.Column="2">
+                        <Rectangle Fill="{StaticResource Image_Cut}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonCopy" Command="ApplicationCommands.Copy" ToolTip="Copy" Grid.Column="3">
+                        <Rectangle Fill="{StaticResource Image_Copy}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonPaste" Command="ApplicationCommands.Paste" ToolTip="Paste" Grid.Column="4">
+                        <Rectangle Fill="{StaticResource Image_Paste}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="5" HorizontalAlignment="Center"/>
+
+                    <Button x:Name="ToolStripButtonUndo" Command="ApplicationCommands.Undo" ToolTip="Undo" Grid.Column="6">
+                        <Rectangle Fill="{StaticResource Image_Undo}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonRedo" Command="ApplicationCommands.Redo" ToolTip="Redo" Grid.Column="7">
+                        <Rectangle Fill="{StaticResource Image_Redo}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="5" HorizontalAlignment="Center"/>
+                </Grid>
+                <Grid Margin="0,2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton x:Name="ToolStripButtonBold" Command="EditingCommands.ToggleBold" ToolTip="Bold" Grid.Column="0">
+                        <Rectangle Fill="{StaticResource Image_Bold}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonItalic" Command="EditingCommands.ToggleItalic" ToolTip="Italic" Grid.Column="1">
+                        <Rectangle Fill="{StaticResource Image_Italic}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Underline" Grid.Column="2">
+                        <Rectangle Fill="{StaticResource Image_Underline}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonStrikeout" ToolTip="Strikeout" Click="ToolStripButtonStrikeout_Click" Grid.Column="3">
+                        <Rectangle Fill="{StaticResource Image_StrikeThrough}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="4" HorizontalAlignment="Center"/>
+
+                    <ToggleButton x:Name="ToolStripButtonAlignLeft" Command="EditingCommands.AlignLeft" ToolTip="Align Left" Click="ToolStripButtonAlignLeft_Click" Grid.Column="5">
+                        <Rectangle Fill="{StaticResource Image_TextLeftJustify}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonAlignCenter" Command="EditingCommands.AlignCenter" ToolTip="Align Center" Click="ToolStripButtonAlignCenter_Click" Grid.Column="6">
+                        <Rectangle Fill="{StaticResource Image_TextCenter}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonAlignRight" Command="EditingCommands.AlignRight" ToolTip="Align Right" Click="ToolStripButtonAlignRight_Click" Grid.Column="7">
+                        <Rectangle Fill="{StaticResource Image_TextRightJustify}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                </Grid>
+                <Grid Margin="0,2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="ToolStripButtonTextcolor" Click="ToolStripButtonTextcolor_Click" Grid.Column="0">
+                        <Rectangle Fill="{StaticResource Image_ForegroundColor}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonBackcolor" Click="ToolStripButtonBackcolor_Click" Grid.Column="1">
+                        <Rectangle Fill="{StaticResource Image_BackgroundColor}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="2" HorizontalAlignment="Center"/>
+
+                    <Button x:Name="ToolStripButtonBulletList" Command="EditingCommands.ToggleBullets" ToolTip="Bullets" Grid.Column="3">
+                        <Rectangle Fill="{StaticResource Image_BulletList}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonNumbersList" Command="EditingCommands.ToggleNumbering" ToolTip="Numbers" Grid.Column="4">
+                        <Rectangle Fill="{StaticResource Image_NumericListBox}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="5" HorizontalAlignment="Center"/>
+
+                    <Button x:Name="ToolStripButtonIndent" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent" Grid.Column="6">
+                        <Rectangle Fill="{StaticResource Image_TextIndent}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonIndentDelete" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent" Grid.Column="7">
+                        <Rectangle Fill="{StaticResource Image_TextIndentExp}" Style="{StaticResource ImageRectangleStyle}" RenderTransformOrigin="0.5,0.5">
+                            <Rectangle.RenderTransform>
+                                <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#66808080" Margin="0,2" Grid.Column="8" HorizontalAlignment="Center"/>
+
+                    <ToggleButton x:Name="ToolStripButtonSubscript" ToolTip="Subscript" Click="ToolStripButtonSubscript_Click" Grid.Column="9">
+                        <Rectangle Fill="{StaticResource Image_Subscript}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonSuperscript" ToolTip="Superscript" Click="ToolStripButtonSuperscript_Click" Grid.Column="10">
+                        <Rectangle Fill="{StaticResource Image_Superscript}" Style="{StaticResource ImageRectangleStyle}"/>
+                    </ToggleButton>
+
+                </Grid>
+            </StackPanel>
+            <Grid DockPanel.Dock="Top" Margin="0,2,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="ComboBox_FontFamily" ToolTip="字体" IsEditable="True" ItemTemplate="{StaticResource FontComboTemplate}" TextBoxBase.TextChanged="ComboBox_FontFamily_TextChanged" DropDownClosed="ComboBox_FontFamily_DropDownClosed"/>
+                <ComboBox x:Name="ComboBox_FontSize" Grid.Column="1" ToolTip="字号" IsEditable="True" TextBoxBase.TextChanged="ComboBox_FontSize_TextChanged" DropDownClosed="ComboBox_FontSize_DropDownClosed">
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="12"/>
+                    <ComboBoxItem Content="15"/>
+                    <ComboBoxItem Content="16"/>
+                    <ComboBoxItem Content="18"/>
+                    <ComboBoxItem Content="20"/>
+                    <ComboBoxItem Content="25"/>
+                    <ComboBoxItem Content="28"/>
+                    <ComboBoxItem Content="30"/>
+                    <ComboBoxItem Content="32"/>
+                    <ComboBoxItem Content="36"/>
+                    <ComboBoxItem Content="40"/>
+                    <ComboBoxItem Content="48"/>
+                    <ComboBoxItem Content="54"/>
+                    <ComboBoxItem Content="60"/>
+                    <ComboBoxItem Content="64"/>
+                    <ComboBoxItem Content="72"/>
+                    <ComboBoxItem Content="80"/>
+                    <ComboBoxItem Content="100"/>
+                </ComboBox>
+                <ComboBox x:Name="ComboBox_LineHeight" Grid.Column="2" ToolTip="行距" IsEditable="True" TextBoxBase.TextChanged="ComboBox_LineHeight_TextChanged">
+                </ComboBox>
+            </Grid>
+            <Grid VerticalAlignment="Bottom" DockPanel.Dock="Bottom" ClipToBounds="True" >
+                <Thumb DragDelta="Thumb_DragDelta" Margin="-5,0,-5,-5" Cursor="SizeNS"/>
+                <StatusBar x:Name="StatusBar" Background="{x:Null}" Margin="2" IsHitTestVisible="False">
+                    <StatusBarItem>
+                        <Label x:Name="LabelZeileNr" Content="行       " BorderThickness="0,0,1,0" BorderBrush="DarkGray" Padding="0,0,3,0" />
+                    </StatusBarItem>
+                    <StatusBarItem >
+                        <Label x:Name="LabelSpalteNr" Content="列       " BorderThickness="0,0,1,0" BorderBrush="DarkGray" Padding="0,0,3,0"/>
+                    </StatusBarItem>
+                </StatusBar>
+            </Grid>
+
+            <RichTextBox x:Name="RichTextControl" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" SelectionChanged="RichTextControl_SelectionChanged" TextChanged="RichTextControl_TextChanged" KeyDown="RichTextControl_KeyDown" KeyUp="RichTextControl_KeyUp" BorderBrush="{x:Null}" BorderThickness="0" />
+        </DockPanel>
+    </Grid>
+</propdesigner:PropertyDesigner>
